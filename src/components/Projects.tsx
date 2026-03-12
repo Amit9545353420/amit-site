@@ -76,6 +76,7 @@ export function Projects() {
                   <video
                     autoPlay
                     loop
+                    muted
                     controls
                     playsInline
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
