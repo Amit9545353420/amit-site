@@ -1,6 +1,6 @@
 import { useState, useRef } from "react";
 import { motion } from "motion/react";
-import { Phone, MapPin, Linkedin, Mail, Send, Loader2, CheckCircle2, XCircle } from "lucide-react";
+import { MapPin, Linkedin, Mail, Send, Loader2, CheckCircle2, XCircle } from "lucide-react";
 import emailjs from '@emailjs/browser';
 
 export function Contact() {
@@ -39,12 +39,6 @@ export function Contact() {
   };
 
   const contactInfo = [
-    {
-      icon: <Phone size={24} />,
-      title: "Phone",
-      value: "+91 9850360779",
-      href: "tel:+919850360779"
-    },
     {
       icon: <Mail size={24} />,
       title: "Email",
