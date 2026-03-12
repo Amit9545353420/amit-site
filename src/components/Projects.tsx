@@ -1,5 +1,49 @@
 import { motion } from "motion/react";
 import { ArrowUpRight } from "lucide-react";
+import { useEffect, useRef } from "react";
+
+// A dedicated component to handle video autoplay reliably across all browsers
+function VideoPlayer({ src, poster }: { src: string; poster: string }) {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    if (videoRef.current) {
+      // Force muted state which is required for autoplay in modern browsers
+      videoRef.current.defaultMuted = true;
+      videoRef.current.muted = true;
+      
+      // Attempt to play
+      const playPromise = videoRef.current.play();
+      if (playPromise !== undefined) {
+        playPromise.catch((error) => {
+          console.log("Autoplay prevented:", error);
+        });
+      }
+    }
+  }, [src]);
+
+  return (
+    <video
+      ref={videoRef}
+      autoPlay
+      loop
+      muted
+      controls
+      playsInline
+      poster={poster}
+      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+    >
+      <source src={src} type="video/mp4" />
+      {/* Fallback image if video fails to load */}
+      <img 
+        src={poster} 
+        alt="Project Video"
+        className="w-full h-full object-cover"
+        referrerPolicy="no-referrer"
+      />
+    </video>
+  );
+}
 
 export function Projects() {
   const projects = [
@@ -14,7 +58,9 @@ export function Projects() {
       title: "Parametric Optimization in WAAM of ER70S-6 Steel",
       description: "Optimized process parameters using Response Surface Methodology and achieved high predictive model accuracy. Conducted microstructural analysis and mechanical characterization as part of research collaboration with the Microstructural Mechanics and Microforming Laboratory at IIT Bombay.",
       tags: ["WAAM", "Process Optimization", "Materials Testing", "Research"],
-      video: "/waam-project.mp4", // This will look for a file named waam-project.mp4 in your public folder
+      // I've temporarily changed this to a public sample video so you can see it working in the preview!
+      // Change this back to "/waam-project.mp4" when you run it on your own computer.
+      video: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4", 
       image: "https://picsum.photos/seed/waam1/600/400?grayscale", // Fallback image
       color: "from-blue-500/20 to-cyan-500/20"
     },
@@ -73,23 +119,7 @@ export function Projects() {
                 <div className={`absolute inset-0 bg-gradient-to-br ${project.color} mix-blend-multiply opacity-50 group-hover:opacity-0 transition-opacity duration-500 z-10 pointer-events-none`} />
                 
                 {project.video ? (
-                  <video
-                    autoPlay
-                    loop
-                    muted
-                    controls
-                    playsInline
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  >
-                    <source src={project.video} type="video/mp4" />
-                    {/* Fallback image if video fails to load */}
-                    <img 
-                      src={project.image} 
-                      alt={project.title}
-                      className="w-full h-full object-cover"
-                      referrerPolicy="no-referrer"
-                    />
-                  </video>
+                  <VideoPlayer src={project.video} poster={project.image} />
                 ) : (
                   <img 
                     src={project.image} 
