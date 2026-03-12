@@ -70,15 +70,15 @@ export function Projects() {
             >
               {/* Project Image/Video Container */}
               <div className="relative aspect-video overflow-hidden bg-slate-100">
-                <div className={`absolute inset-0 bg-gradient-to-br ${project.color} mix-blend-multiply opacity-50 group-hover:opacity-0 transition-opacity duration-500 z-10`} />
+                <div className={`absolute inset-0 bg-gradient-to-br ${project.color} mix-blend-multiply opacity-50 group-hover:opacity-0 transition-opacity duration-500 z-10 pointer-events-none`} />
                 
                 {project.video ? (
                   <video
                     autoPlay
                     loop
-                    muted
+                    controls
                     playsInline
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   >
                     <source src={project.video} type="video/mp4" />
                     {/* Fallback image if video fails to load */}
