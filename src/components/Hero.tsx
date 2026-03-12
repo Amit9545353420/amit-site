@@ -59,7 +59,8 @@ export function Hero() {
                 <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
               </a>
               <a 
-                href="#cv"
+                href="/Amitkumar_Pandurnikar_CV.pdf"
+                download="Amitkumar_Pandurnikar_CV.pdf"
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 rounded-xl bg-white text-slate-700 font-medium border border-slate-200 hover:border-eng-blue hover:text-eng-blue transition-all group"
               >
                 Download CV
