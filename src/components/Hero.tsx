@@ -4,6 +4,23 @@ import { ArrowRight, Download, ChevronDown } from "lucide-react";
 export function Hero() {
   return (
     <section className="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+      {/* Background Video */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute top-1/2 left-1/2 min-w-full min-h-full w-auto h-auto -translate-x-1/2 -translate-y-1/2 object-cover opacity-30"
+        >
+          {/* Replace this URL with your own video link or local file like "/my-video.mp4" */}
+          <source src="https://cdn.coverr.co/videos/coverr-3d-printing-5244/1080p.mp4" type="video/mp4" />
+          Your browser does not support the video tag.
+        </video>
+        {/* Gradient overlay to ensure text remains readable */}
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-50/60 via-slate-50/80 to-slate-50 backdrop-blur-[2px]" />
+      </div>
+
       {/* Background Elements */}
       <div className="absolute inset-0 z-0 pointer-events-none">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-eng-blue-light/30 rounded-full blur-3xl opacity-50" />

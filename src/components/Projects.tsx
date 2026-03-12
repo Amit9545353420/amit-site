@@ -14,7 +14,8 @@ export function Projects() {
       title: "Parametric Optimization in WAAM of ER70S-6 Steel",
       description: "Optimized process parameters using Response Surface Methodology and achieved high predictive model accuracy. Conducted microstructural analysis and mechanical characterization as part of research collaboration with the Microstructural Mechanics and Microforming Laboratory at IIT Bombay.",
       tags: ["WAAM", "Process Optimization", "Materials Testing", "Research"],
-      image: "https://picsum.photos/seed/waam1/600/400?grayscale",
+      video: "/waam-project.mp4", // This will look for a file named waam-project.mp4 in your public folder
+      image: "https://picsum.photos/seed/waam1/600/400?grayscale", // Fallback image
       color: "from-blue-500/20 to-cyan-500/20"
     },
     {
@@ -67,15 +68,35 @@ export function Projects() {
               whileHover={{ y: -10 }}
               className="group glass-panel rounded-3xl overflow-hidden flex flex-col h-full border border-slate-200/60 hover:border-eng-blue/30 transition-all duration-300 hover:shadow-xl hover:shadow-eng-blue/5"
             >
-              {/* Project Image Container */}
+              {/* Project Image/Video Container */}
               <div className="relative aspect-video overflow-hidden bg-slate-100">
                 <div className={`absolute inset-0 bg-gradient-to-br ${project.color} mix-blend-multiply opacity-50 group-hover:opacity-0 transition-opacity duration-500 z-10`} />
-                <img 
-                  src={project.image} 
-                  alt={project.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                  referrerPolicy="no-referrer"
-                />
+                
+                {project.video ? (
+                  <video
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  >
+                    <source src={project.video} type="video/mp4" />
+                    {/* Fallback image if video fails to load */}
+                    <img 
+                      src={project.image} 
+                      alt={project.title}
+                      className="w-full h-full object-cover"
+                      referrerPolicy="no-referrer"
+                    />
+                  </video>
+                ) : (
+                  <img 
+                    src={project.image} 
+                    alt={project.title}
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    referrerPolicy="no-referrer"
+                  />
+                )}
                 
                 {/* Overlay Icon */}
                 <div className="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-white/90 backdrop-blur-sm flex items-center justify-center text-eng-dark opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300 shadow-sm">

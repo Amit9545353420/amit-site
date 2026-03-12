@@ -56,12 +56,6 @@ export function Navbar() {
                 <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-eng-blue transition-all group-hover:w-full" />
               </a>
             ))}
-            <a
-              href="#cv"
-              className="px-5 py-2 rounded-full bg-eng-dark text-white text-sm font-medium hover:bg-eng-blue transition-colors shadow-sm"
-            >
-              Resume
-            </a>
           </nav>
 
           {/* Mobile Menu Toggle */}
@@ -91,13 +85,6 @@ export function Navbar() {
                 {link.name}
               </a>
             ))}
-            <a
-              href="#cv"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="mt-2 px-5 py-3 rounded-xl bg-eng-dark text-white text-center font-medium hover:bg-eng-blue transition-colors"
-            >
-              Download Resume
-            </a>
           </motion.div>
         )}
       </div>
