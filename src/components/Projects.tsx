@@ -1,6 +1,6 @@
 import { motion } from "motion/react";
 import { ArrowUpRight } from "lucide-react";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 
 // A dedicated component to handle video autoplay reliably across all browsers
 function VideoPlayer({ src, poster }: { src: string; poster: string }) {
@@ -44,13 +44,42 @@ function VideoPlayer({ src, poster }: { src: string; poster: string }) {
   );
 }
 
+function ImageSlider({ images }: { images: string[] }) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  useEffect(() => {
+    if (images.length <= 1) return;
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % images.length);
+    }, 3500); // Change image every 3.5 seconds
+    return () => clearInterval(interval);
+  }, [images.length]);
+
+  return (
+    <div className="w-full h-full relative overflow-hidden">
+      {images.map((img, index) => (
+        <img
+          key={index}
+          src={img}
+          alt={`Slide ${index + 1}`}
+          className={`absolute inset-0 w-full h-full object-cover transition-all duration-1000 group-hover:scale-110 ${
+            index === currentIndex ? "opacity-100 z-10" : "opacity-0 z-0"
+          }`}
+          referrerPolicy="no-referrer"
+        />
+      ))}
+    </div>
+  );
+}
+
 export function Projects() {
   const projects = [
     {
       title: "ADAPTIVE STRUCTURE CREATION WITH THE HELP OF ARTIFICIAL INTELLIGENCE",
       description: "Applied AI-driven generative design in Autodesk Fusion 360 to create and optimize adaptive mechanical structures for improved strength, weight reduction, and design efficiency.",
       tags: ["AI", "Generative Design", "Fusion 360", "Optimization"],
-      image: "https://picsum.photos/seed/ai1/600/400?grayscale",
+      images: ["/ai-slide-1.jpg", "/ai-slide-2.jpg"], // The two images for the slider
+      image: "https://picsum.photos/seed/ai1/600/400?grayscale", // Fallback
       color: "from-rose-500/20 to-orange-500/20"
     },
     {
@@ -117,6 +146,8 @@ export function Projects() {
                 
                 {project.video ? (
                   <VideoPlayer src={project.video} poster={project.image} />
+                ) : project.images ? (
+                  <ImageSlider images={project.images} />
                 ) : (
                   <img 
                     src={project.image} 
