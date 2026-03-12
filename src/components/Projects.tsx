@@ -28,10 +28,9 @@ function VideoPlayer({ src, poster }: { src: string; poster: string }) {
       autoPlay
       loop
       muted
-      controls
       playsInline
       poster={poster}
-      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+      className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
     >
       <source src={src} type="video/mp4" />
       {/* Fallback image if video fails to load */}
@@ -58,9 +57,7 @@ export function Projects() {
       title: "Parametric Optimization in WAAM of ER70S-6 Steel",
       description: "Optimized process parameters using Response Surface Methodology and achieved high predictive model accuracy. Conducted microstructural analysis and mechanical characterization as part of research collaboration with the Microstructural Mechanics and Microforming Laboratory at IIT Bombay.",
       tags: ["WAAM", "Process Optimization", "Materials Testing", "Research"],
-      // I've temporarily changed this to a public sample video so you can see it working in the preview!
-      // Change this back to "/waam-project.mp4" when you run it on your own computer.
-      video: "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4", 
+      video: "/waam-project.mp4", 
       image: "https://picsum.photos/seed/waam1/600/400?grayscale", // Fallback image
       color: "from-blue-500/20 to-cyan-500/20"
     },
