@@ -94,7 +94,7 @@ export function Projects() {
       title: "Mechanical Performance Testing & Microstructural Characterization",
       description: "Evaluated microstructure and mechanical properties of WAAM fabricated ER70S-6 steel, studying the relationship between process parameters and material behavior.",
       tags: ["WAAM", "Materials Testing", "Manufacturing", "Analysis"],
-      images: ["/mech-test-1.png", "/mech-test-2.png"], // The two images for the slider
+      splitImages: ["/mech-test-1.png", "/mech-test-2.png"], // Show side-by-side instead of slider
       image: "https://picsum.photos/seed/waam2/600/400?grayscale", // Fallback
       color: "from-emerald-500/20 to-teal-500/20"
     },
@@ -147,6 +147,21 @@ export function Projects() {
                 
                 {project.video ? (
                   <VideoPlayer src={project.video} poster={project.image} />
+                ) : project.splitImages ? (
+                  <div className="w-full h-full flex transition-transform duration-700 group-hover:scale-110">
+                    <img 
+                      src={project.splitImages[0]} 
+                      alt={`${project.title} - Part 1`}
+                      className="w-1/2 h-full object-cover border-r border-slate-200/50"
+                      referrerPolicy="no-referrer"
+                    />
+                    <img 
+                      src={project.splitImages[1]} 
+                      alt={`${project.title} - Part 2`}
+                      className="w-1/2 h-full object-cover"
+                      referrerPolicy="no-referrer"
+                    />
+                  </div>
                 ) : project.images ? (
                   <ImageSlider images={project.images} />
                 ) : (
