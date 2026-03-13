@@ -137,11 +137,11 @@ export function Contact() {
             
             <form ref={formRef} className="space-y-6 relative z-10" onSubmit={handleSubmit}>
               <div className="space-y-2">
-                <label htmlFor="user_name" className="text-sm font-medium text-slate-700">Name</label>
+                <label htmlFor="from_name" className="text-sm font-medium text-slate-700">Name</label>
                 <input 
                   type="text" 
-                  id="user_name" 
-                  name="user_name"
+                  id="from_name" 
+                  name="from_name"
                   placeholder="John Doe"
                   required
                   className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:border-eng-blue focus:ring-2 focus:ring-eng-blue/20 outline-none transition-all"
@@ -149,11 +149,11 @@ export function Contact() {
               </div>
               
               <div className="space-y-2">
-                <label htmlFor="user_email" className="text-sm font-medium text-slate-700">Email</label>
+                <label htmlFor="reply_to" className="text-sm font-medium text-slate-700">Email</label>
                 <input 
                   type="email" 
-                  id="user_email" 
-                  name="user_email"
+                  id="reply_to" 
+                  name="reply_to"
                   placeholder="john@example.com"
                   required
                   className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 focus:border-eng-blue focus:ring-2 focus:ring-eng-blue/20 outline-none transition-all"
