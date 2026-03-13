@@ -81,53 +81,56 @@ export function About() {
           >
             <div className="aspect-square max-w-md mx-auto relative">
               {/* Wireframe/Blueprint Graphic */}
-              <div className="absolute inset-0 bg-slate-900 rounded-3xl overflow-hidden shadow-2xl">
+              <div className="absolute inset-0 bg-slate-900 rounded-3xl shadow-2xl">
                 {/* Grid Lines */}
-                <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff10_1px,transparent_1px),linear-gradient(to_bottom,#ffffff10_1px,transparent_1px)] bg-[size:32px_32px]" />
+                <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff10_1px,transparent_1px),linear-gradient(to_bottom,#ffffff10_1px,transparent_1px)] bg-[size:32px_32px] rounded-3xl overflow-hidden" />
                 
                 {/* Abstract CAD Shape */}
-                <svg className="absolute inset-0 w-full h-full p-12" viewBox="0 0 100 100" fill="none" stroke="rgba(255,255,255,0.2)" strokeWidth="0.5">
+                <svg className="absolute inset-0 w-full h-full" viewBox="0 0 100 100" fill="none" stroke="rgba(255,255,255,0.2)" strokeWidth="0.5">
                   <motion.path 
                     initial={{ pathLength: 0 }}
                     whileInView={{ pathLength: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 2, ease: "easeInOut" }}
-                    d="M50 10 L90 30 L90 70 L50 90 L10 70 L10 30 Z" 
+                    d="M50 25 L71.6 37.5 L71.6 62.5 L50 75 L28.4 62.5 L28.4 37.5 Z" 
                   />
                   <motion.path 
                     initial={{ pathLength: 0 }}
                     whileInView={{ pathLength: 1 }}
                     viewport={{ once: true }}
                     transition={{ duration: 2, delay: 0.5, ease: "easeInOut" }}
-                    d="M50 10 L50 50 L90 30 M50 50 L90 70 M50 50 L50 90 M50 50 L10 70 M50 50 L10 30" 
+                    d="M50 25 L50 50 L71.6 37.5 M50 50 L71.6 62.5 M50 50 L50 75 M50 50 L28.4 62.5 M50 50 L28.4 37.5" 
                   />
-                  <circle cx="50" cy="50" r="2" fill="#0066FF" />
-                  <circle cx="50" cy="10" r="2" fill="#fff" />
-                  <circle cx="90" cy="30" r="2" fill="#fff" />
-                  <circle cx="90" cy="70" r="2" fill="#fff" />
-                  <circle cx="50" cy="90" r="2" fill="#fff" />
-                  <circle cx="10" cy="70" r="2" fill="#fff" />
-                  <circle cx="10" cy="30" r="2" fill="#fff" />
+                  <circle cx="50" cy="50" r="1.5" fill="#0066FF" />
+                  <circle cx="50" cy="25" r="1.5" fill="#fff" />
+                  <circle cx="71.6" cy="37.5" r="1.5" fill="#fff" />
+                  <circle cx="71.6" cy="62.5" r="1.5" fill="#fff" />
+                  <circle cx="50" cy="75" r="1.5" fill="#fff" />
+                  <circle cx="28.4" cy="62.5" r="1.5" fill="#fff" />
+                  <circle cx="28.4" cy="37.5" r="1.5" fill="#fff" />
                 </svg>
 
                 {/* Overlay Info Cards */}
-                <motion.div 
-                  animate={{ y: [0, -5, 0] }}
-                  transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-                  className="absolute top-8 left-8 bg-white/10 backdrop-blur-md border border-white/20 rounded-lg p-3"
-                >
-                  <p className="text-[10px] text-blue-200 uppercase tracking-wider font-mono">Process</p>
-                  <p className="text-sm text-white font-bold font-mono">WAAM</p>
-                </motion.div>
-
-                <motion.div 
-                  animate={{ y: [0, 5, 0] }}
-                  transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                  className="absolute bottom-8 right-8 bg-white/10 backdrop-blur-md border border-white/20 rounded-lg p-3"
-                >
-                  <p className="text-[10px] text-blue-200 uppercase tracking-wider font-mono">Material</p>
-                  <p className="text-sm text-white font-bold font-mono">ER70S-6</p>
-                </motion.div>
+                <div className="absolute inset-0 pointer-events-none">
+                  {[
+                    { text: "Generative Design", pos: "top-[25%] left-[50%] -translate-x-1/2 -translate-y-full -mt-2 md:-mt-3", delay: 0 },
+                    { text: "3D Printing", pos: "top-[37.5%] left-[71.6%] ml-2 md:ml-3 -translate-y-1/2", delay: 0.5 },
+                    { text: "CAD/CAM Fusion 360", pos: "top-[62.5%] left-[71.6%] ml-2 md:ml-3 -translate-y-1/2", delay: 1 },
+                    { text: "Optimization", pos: "top-[75%] left-[50%] -translate-x-1/2 mt-2 md:mt-3", delay: 1.5 },
+                    { text: "Industry 4.0", pos: "top-[62.5%] left-[28.4%] -translate-x-full -ml-2 md:-ml-3 -translate-y-1/2", delay: 2 },
+                    { text: "Mechanical Testings", pos: "top-[37.5%] left-[28.4%] -translate-x-full -ml-2 md:-ml-3 -translate-y-1/2", delay: 2.5 },
+                  ].map((label, i) => (
+                    <div key={i} className={`absolute ${label.pos} z-10 pointer-events-auto`}>
+                      <motion.div 
+                        animate={{ y: [0, i % 2 === 0 ? -3 : 3, 0] }}
+                        transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: label.delay }}
+                        className="bg-white/10 backdrop-blur-md border border-white/20 rounded-lg px-2 py-1.5 shadow-lg w-20 md:w-24 flex items-center justify-center text-center"
+                      >
+                        <p className="text-[8px] md:text-[10px] text-white font-bold font-mono uppercase tracking-wider leading-tight">{label.text}</p>
+                      </motion.div>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </motion.div>

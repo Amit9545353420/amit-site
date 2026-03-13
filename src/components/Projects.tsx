@@ -94,14 +94,15 @@ export function Projects() {
       title: "Mechanical Performance Testing & Microstructural Characterization",
       description: "Evaluated microstructure and mechanical properties of WAAM fabricated ER70S-6 steel, studying the relationship between process parameters and material behavior.",
       tags: ["WAAM", "Materials Testing", "Manufacturing", "Analysis"],
-      image: "https://picsum.photos/seed/waam2/600/400?grayscale",
+      images: ["/mech-test-1.jpg", "/mech-test-2.jpg"], // The two images for the slider
+      image: "https://picsum.photos/seed/waam2/600/400?grayscale", // Fallback
       color: "from-emerald-500/20 to-teal-500/20"
     },
     {
       title: "Automatic Street Light Controller",
       description: "Designed an IoT-based system that activates street lights automatically when vehicles approach and switches them off when no traffic is detected, reducing electricity wastage.",
       tags: ["IoT", "Automation", "Electronics", "Sustainability"],
-      image: "https://picsum.photos/seed/iot1/600/400?grayscale",
+      image: "/street-light-1.jpg", // Local image
       color: "from-indigo-500/20 to-purple-500/20"
     }
   ];
